@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search For A Movie</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+        #wrapper {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: whitesmoke;
+        }
+        #links {
+            width: 100%;
+            height: 50px;
+            padding-left: 80px;
+            background-color: lightgray;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border-radius: 10px;
+        }
+        #messages {
+            width: 100%;
+            height: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            height: 0 auto;
+        }
+        main {
+            width: 100%;
+            height: 0 auto;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #button {
+            display: flex;
+            justify-content: space-between;
+        }
+        footer {
+            width: 100%;
+            height: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <header>
+
+            <div id="links">
+                <a href="/movies">Home</a>
+                <a href="/users/logout">Logout</a>
+            </div>
+
+            <div id="messages">
+                {% for message in messages %}
+                <h4>{{message}}</h4>
+                {% endfor %}
+            </div>
+
+        </header>
+
+        <main>
+            
+            <div id="search">
+
+                <form action="{% url 'search_bar' %}" method="get">
+                    Title : <input type="search" name="title_search"><br>
+                    <br>
+                    Rating : <input type="search" name="rating_search"><br>
+                    <br>
+                    Genre : <input type="search" name="genre_search"><br>
+                    <br>
+                    Actor / Actress : <input type="search" name="actor_search"><br>
+                    <br>
+                    Director : <input type="search" name="director_search"><br>
+                    <br>
+                    <br>
+                    <br>
+
+                    <div id="button">
+                        <button type="submit">Search</button>
+                        <a href="/movies">Cancel</a>
+                    </div>
+
+                </form>
+                
+            </div>
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+    </div>
+    
+</body>
+
+</html>

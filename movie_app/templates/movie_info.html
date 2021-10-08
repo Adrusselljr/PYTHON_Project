@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{movie.title}} Info</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+        #wrapper {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: whitesmoke;
+        }
+        header {
+            width: 100%;
+            height: 100px;  
+        }
+        #links {
+            width: 100%;
+            height: 50px;
+            padding-left: 80px;
+            background-color: lightgray;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border-radius: 10px;
+        }
+        #messages {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        main {
+            width: 100%;
+            padding-top: 40px;
+            padding-left: 50px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #side1 {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        #side2 {
+            width: 40%;
+            padding-top: 85px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .list {
+            font-style: italic;
+            font-weight: bold;
+        }
+        footer {
+            width: 30%;
+            height: 100px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <header>
+
+            <div id="links">
+                <a href="/movies">Home</a>
+                <a href="/movies/{{movie.id}}/edit">Edit</a>
+                <a href="/movies/{{movie.id}}/confirm">Delete</a>
+                <a href="/users/logout">Logout</a><br>
+            </div>
+
+            <div id="messages">
+                {% for message in messages %}
+                <h4>{{message}}</h4>
+                {% endfor %}
+            </div>
+
+        </header>
+
+        <main>
+
+            <div id="side1">
+
+                <h1>Movie ID : {{movie.number}}</h1><br>
+                <br>
+                <h2>Title : {{movie.title}}</h2><br>
+                <br>
+                <p class="list">Rating : </p><br><p>{{movie.rating}}</p><br>
+                <br>
+                <p class="list">Genre : </p><br><p>{{movie.genre}}</p><br>
+                <br>
+                <p class="list">Description : </p><br><p>{{movie.description}}</p><br>
+                <br>
+                <p class="list">Duration : </p><br><p>{{movie.duration}}</p><br>
+
+            </div>
+            <div id="side2">
+
+                <p class="list">Leading Actor / Actress : </p><br><p>{{movie.leading_actor}}</p><br>
+                <br>
+                <p class="list">Supporting Actor(s) / Actress(s) : </p><br><p>{{movie.supporting_actor}}</p><br>
+                <br>
+                <p class="list">Director : </p><br><p>{{movie.director}}</p><br>
+                <br>
+                <p class="list">Release Date : </p><br>
+                <p>{{movie.release_date|date:"M d, Y"}}</p>
+
+            </div>
+
+        </main>
+
+        <footer>
+
+            <p class="list">Movie Admin :</p>
+            <p>{{movie.admin.first_name}} {{movie.admin.last_name}}</p>
+
+        </footer>
+
+    </div>
+    
+</body>
+
+</html>

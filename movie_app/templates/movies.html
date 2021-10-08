@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Homepage</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+        #wrapper {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: whitesmoke;
+        }
+        #links {
+            width: 50;
+            background-color: lightgray;
+            border-radius: 10px;
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        #messages {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            height: 100px;  
+        }
+        h1 {
+            font-style: italic;
+        }
+        main {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        #table {
+            width: 75%;
+            margin-left: 125px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        table {
+            border: 1px solid black;
+        }
+        td {
+            padding-left: 60px;
+        }
+        footer {
+            width: 100%;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <header>
+
+            <div id="links">
+                <a href="/users/logout">Logout</a>
+                <a href="/movies/add">Add A Movie</a>
+                <a href="/movies/search">Search For A Movie</a>
+            </div>
+
+            <div id="messages">
+                {% for message in messages %}
+                <h4>{{message}}</h4>
+                {% endfor %}
+            </div>
+
+        </header>
+
+        <main>
+
+            <h1>{{request.session.first_name}} {{request.session.last_name}} </h1><br>
+            <br>
+
+            <div id="table">
+
+                <h2>Your Movies :</h2><br>
+                <br>
+
+                <table>
+                    <thead>
+                        <th>Movie ID</th>
+                        <th>Title</th>
+                        <th>Rating</th>
+                        <th>Actions</th>
+                    </thead>
+                    {% for movie in movies %}
+                    <tr>
+                        {% if user == movie.admin %}
+                        <td>{{movie.number}}</td>
+                        <td>{{movie.title}}</td>
+                        <td>{{movie.rating}}</td>
+                        <td><a href="/movies/{{movie.id}}">View</a></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
